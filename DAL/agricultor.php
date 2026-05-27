@@ -54,9 +54,6 @@ class Agricultor
 
 
 
-
-
-
    public function Insert(\MODEL\Agricultor $agricultor)
    {
 
@@ -74,10 +71,20 @@ class Agricultor
    {
 
       $sql = "UPDATE agricultor SET nome = ?, cidade = ?, bairro = ?, idade = ? WHERE id = ?;";
-
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($agricultor->getNome(), $agricultor->getCidade(), $agricultor->getBairro(), $agricultor->getIdade(), $agricultor->getId()));
+      $con = Conexao::desconectar();
+      return $result;
+   }
+
+   
+   public function Delete(int $id)
+   {
+      $sql = "DELETE from agricultor WHERE id = ?;";
+      $con = Conexao::conectar();
+      $query = $con->prepare($sql);
+      $result = $query->execute(array($id));
       $con = Conexao::desconectar();
       return $result;
    }

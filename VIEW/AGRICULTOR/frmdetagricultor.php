@@ -30,57 +30,57 @@ $agricultor = $dalAgricultor->SelectById($id);
     <!--para usar icones na página -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>Editar Agricultor</title>
+    <title>Detalhes de Agricultor</title>
 </head>
 
 <body class="teal lighten-4">
     <div class="container brown lighten-4 col s12">
         <h3 class="center blue darken-2 white-text col s12">
-            Editar Agricultor
+            Detalhes de Agricultor
         </h3>
         <div class="grey lighten-3 black-text col s10">
-            <form action="opedtagricultor.php" method="POST" class="row">
+            <form  class="row">
                 <div class="input-field col s10">
-                    <label for="id" class="black-text bold">ID: <?php echo $agricultor->getID() ?>
-                    </label>
-                    </br></br>
-                    <input type="hidden" name="id" value=<?php echo $id; ?>>
+                    <label for="id" class="black-text bold">ID: <?php echo $agricultor->getID() ?></label>
                 </div>
 
                 <div class="input-field col s10">
-                    <input type="text" id="nome" name="nome" placeholder="Informe o nome..."
-                    value="<?php echo $agricultor->getNome(); ?>">
-                    <label for="labelNome">Nome: </label>
+                    <label for="nome" class="black-text bold">Nome: <?php echo $agricultor->getNome() ?></label>
                 </div>
 
                 <div class="input-field col s10">
-                    <input type="text" id="cidade" name="cidade" placeholder="Informe a cidade..."
-                    value="<?php echo $agricultor->getCidade(); ?>">
-                    <label for="labelCidade">Cidade: </label>
+                    <label for="cidade" class="black-text bold">Cidade: <?php echo $agricultor->getCidade() ?></label>
                 </div>
 
                 <div class="input-field col s10">
-                    <input type="text" id="bairro" name="bairro" placeholder="Informe o bairro..."
-                    value="<?php echo $agricultor->getBairro(); ?>">
-                    <label for="labelBairro">Bairro: </label>
+                    <label for="bairro" class="black-text bold">Bairro: <?php echo $agricultor->getBairro() ?></label>
+
                 </div>
 
                 <div class="input-field col s10">
-                    <input type="text" id="idade" name="idade" placeholder="Informe o idade..."
-                    value="<?php echo $agricultor->getIdade(); ?>">
-                    <label for="labelIdade">Idade: </label>
+                    <label for="idade" class="black-text bold">Idade: <?php echo $agricultor->getIdade() ?></label>
                 </div>
+
+                <br>
+                <br>
 
                 <div class="row center col s10">
-                    <button class="btn waves-effect waves-light" type="submit" name="btsalvar">
-                        Salvar <i class="material-icons">save</i>
-                    </button>
                     <a class="waves-effect waves-light btn indigo darken-4"
-                          onclick="JavaScript:location.href='lstagricultor.php'">    
-                     <i class="material-icons right">arrow_back</i>Voltar
+                        onclick="JavaScript:location.href='lstagricultor.php'">
+                        <i class="material-icons right">arrow_back</i>Voltar
                     </a>
 
+                    <a class="waves-effect waves-light btn orange"
+                        onclick="JavaScript:location.href='frmedtagricultor.php?id=' + '<?php echo $agricultor->getId(); ?>'">
+                        <i class="material-icons right">edit</i>Editar
+                    </a>
 
+                     <a class="waves-effect waves-light btn red"
+                         onclick="JavaScript: remover( <?php echo $agricultor->getId(); ?> )"
+                        >
+                        <i class="material-icons right">delete</i>Remover
+                    </a>
+ 
                 </div>
 
             </form>
@@ -91,3 +91,11 @@ $agricultor = $dalAgricultor->SelectById($id);
 </body>
 
 </html>
+
+<script>
+    function remover(id) {
+        if (confirm('Excluir Agricultor ' + id + '?')) {
+            location.href = 'opremagricultor.php?id=' + id;
+        }
+    }
+</script>
