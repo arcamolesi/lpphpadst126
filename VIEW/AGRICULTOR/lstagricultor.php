@@ -35,8 +35,8 @@ $lstAgricultor = $dalAgricultor->Select();
     <h1>Listar Agricultores</h1>
 
     <a class="btn-floating btn-large waves-effect waves-light green">
-        <i class="material-icons"  
-         onclick="JavaScript:location.href='frminsagricultor.php'">add</i>
+        <i class="material-icons"
+            onclick="JavaScript:location.href='frminsagricultor.php'">add</i>
     </a>
 
 
@@ -48,15 +48,22 @@ $lstAgricultor = $dalAgricultor->Select();
             <th>CIDADE</th>
             <th>BAIRRO</th>
             <th>IDADE</th>
+            <th>OPERAÇÕES</th>
         </tr>
         <?php
-        foreach ($lstAgricultor as $agricutor) { ?>
+        foreach ($lstAgricultor as $agricultor) { ?>
             <tr>
-                <td><?php echo $agricutor->getId(); ?></td>
-                <td><?php echo $agricutor->getNome(); ?></td>
-                <td><?php echo $agricutor->getCidade(); ?></td>
-                <td><?php echo $agricutor->getBairro(); ?></td>
-                <td><?php echo $agricutor->getIdade(); ?></td>
+                <td><?php echo $agricultor->getId(); ?></td>
+                <td><?php echo $agricultor->getNome(); ?></td>
+                <td><?php echo $agricultor->getCidade(); ?></td>
+                <td><?php echo $agricultor->getBairro(); ?></td>
+                <td><?php echo $agricultor->getIdade(); ?></td>
+                <td>
+                    <a class="btn-floating btn-small waves-effect orange">
+                        <i class="material-icons" 
+                        onclick="JavaScript:location.href='frmedtagricultor.php?id=' + '<?php echo $agricultor->getId(); ?>'">edit</i>
+                    </a>
+                </td>
             </tr>
 
         <?php    }

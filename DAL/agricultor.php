@@ -32,6 +32,31 @@ class Agricultor
       return $lstAgricultor;
    }
 
+  public function SelectById(int $id)
+   {
+      $sql = "Select * from agricultor where id=?;";
+      $con = Conexao::conectar();
+      $query = $con->prepare($sql);
+      $query->execute(array($id));
+      $linha = $query->fetch(\PDO::FETCH_ASSOC);
+      $con = Conexao::desconectar();
+
+     
+         $agricultor = new \MODEL\Agricultor();
+         $agricultor->setId($linha['id']);
+         $agricultor->setNome($linha['nome']);
+         $agricultor->setCidade($linha['cidade']);
+         $agricultor->setBairro($linha['bairro']);
+         $agricultor->setIdade($linha['idade']);
+
+      return $agricultor;
+   }
+
+
+
+
+
+
    public function Insert(\MODEL\Agricultor $agricultor)
    {
 
@@ -42,6 +67,18 @@ class Agricultor
       $result = $con->query($sql);
       $con = Conexao::desconectar();
 
+      return $result;
+   }
+
+   public function Update(\MODEL\Agricultor $agricultor)
+   {
+
+      $sql = "UPDATE agricultor SET nome = ?, cidade = ?, bairro = ?, idade = ? WHERE id = ?;";
+
+      $con = Conexao::conectar();
+      $query = $con->prepare($sql);
+      $result = $query->execute(array($agricultor->getNome(), $agricultor->getCidade(), $agricultor->getBairro(), $agricultor->getIdade(), $agricultor->getId()));
+      $con = Conexao::desconectar();
       return $result;
    }
 }
